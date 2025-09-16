@@ -15,13 +15,13 @@ public class WebConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 String frontendUrl = System.getenv("FRONTEND_URL");
                 if (frontendUrl != null) {
-                    String[] origins = frontendUrl.split(",");
-                    for (int i = 0; i < origins.length; i++) {
-                        origins[i] = origins[i].trim();
+                    String[] originsOrPatterns = frontendUrl.split(",");
+                    for (int i = 0; i < originsOrPatterns.length; i++) {
+                        originsOrPatterns[i] = originsOrPatterns[i].trim();
                     }
                     registry
                         .addMapping("/**")
-                        .allowedOrigins(origins)
+                        .allowedOriginPatterns(originsOrPatterns)
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowCredentials(true);
                 } else {

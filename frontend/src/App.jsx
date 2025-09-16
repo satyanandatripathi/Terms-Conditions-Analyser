@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080";
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL ||
+  (import.meta.env.PROD
+    ? "https://terms-conditions-analyser-zrfr.onrender.com"
+    : "http://localhost:8080");
 
 function riskToColor(score) {
   if (score >= 0.7) return "rgba(255,0,0,0.15)";
